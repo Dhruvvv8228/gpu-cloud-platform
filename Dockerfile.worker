@@ -1,0 +1,14 @@
+# Build stage for Go Worker
+FROM golang:1.27-alpine AS builder
+WORKDIR /app
+COPY workers/provisioning/go.mod workers/provisioning/go.sum ./
+RUN go mod download || true
+COPY workers/provisioning/ ./
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/bin/worker ./cmd/worker
+
+# Final minimal runner stage
+FROM alpine:3.20
+RUN apk add --no-cache ca-certificates
+WORKDIR /app
+COPY --from=builder /app/bin/worker /app/worker
+CMD ["/app/worker"]

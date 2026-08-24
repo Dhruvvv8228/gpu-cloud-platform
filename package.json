@@ -1,0 +1,22 @@
+{
+  "name": "gpu-cloud-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NVIDIA GPU Cloud Compute Marketplace & Control Plane",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "infra/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "start": "npm run start --workspace=apps/web",
+    "test": "node tests/e2e_flow.test.mjs",
+    "lint": "npm run lint --workspace=apps/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vercel": "^59.5.0"
+  }
+}
