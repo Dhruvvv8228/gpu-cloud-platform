@@ -299,4 +299,11 @@ export class ProvisioningWorkflowEngine {
   }
 }
 
-export const provisioningEngine = new ProvisioningWorkflowEngine();
+const globalForEngine = globalThis as unknown as {
+  provisioningEngine: ProvisioningWorkflowEngine | undefined;
+};
+
+export const provisioningEngine =
+  globalForEngine.provisioningEngine ?? new ProvisioningWorkflowEngine();
+
+globalForEngine.provisioningEngine = provisioningEngine;

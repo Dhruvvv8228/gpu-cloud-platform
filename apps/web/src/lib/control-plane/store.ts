@@ -9,7 +9,7 @@ import {
   ApiKey,
   MarketDemandEvent,
 } from './types';
-import seedData from '../../../../../db/seeds/0001_initial_seeds.json';
+import seedData from '../data/seeds.json';
 
 class MarketplaceStore {
   public gpuTypes: GPUType[] = [];
@@ -98,9 +98,92 @@ class MarketplaceStore {
       user_id: this.defaultUserId,
       name: 'Default Production Key',
       key_prefix: 'sk_live_demo982',
-      hashed_secret: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', // SHA-256 placeholder
+      hashed_secret: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
       last_used_at: new Date().toISOString(),
       created_at: new Date().toISOString(),
+    });
+
+    // Active Live Demo Instance (NVIDIA H100 80GB in ap-south-1)
+    const runningInstance: CustomerInstance & { provider_instance_id: string } = {
+      id: 'inst_982104',
+      organization_id: this.defaultOrgId,
+      user_id: this.defaultUserId,
+      product_id: 'prod_h100-80gb_ap-south-1',
+      gpu_code: 'h100-80gb',
+      gpu_name: 'NVIDIA H100 80GB',
+      region_code: 'ap-south-1',
+      gpu_count: 1,
+      name: 'llama-3.3-70b-inference-node',
+      status: 'RUNNING',
+      connection_ip: '194.26.112.45',
+      connection_port: 22,
+      ssh_username: 'ubuntu',
+      ssh_public_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...',
+      image: 'Ubuntu 22.04 LTS (PyTorch 2.5 + CUDA 12.4 + vLLM)',
+      customer_hourly_price_inr: 300.0,
+      provider_id: 'prov-mock-01',
+      provider_instance_id: 'vm-mock-982104',
+      created_at: new Date(Date.now() - 3600 * 2500).toISOString(),
+      started_at: new Date(Date.now() - 3600 * 2500).toISOString(),
+      current_spend_inr: 750.0,
+      uptime_seconds: 9000,
+    };
+    this.instances.set('inst_982104', runningInstance);
+
+    // Initial usage record
+    this.usageRecords.push({
+      id: 'usg_demo_982104',
+      instance_id: 'inst_982104',
+      organization_id: this.defaultOrgId,
+      gpu_code: 'h100-80gb',
+      start_time: new Date(Date.now() - 3600 * 2500).toISOString(),
+      duration_seconds: 9000,
+      rate_per_hour_inr: 300.0,
+      total_charge_inr: 750.0,
+      billing_status: 'BILLED',
+    });
+
+    // Initial demand intelligence signals
+    this.marketDemandEvents.push(
+      {
+        id: 'mde_demo_1',
+        organization_id: this.defaultOrgId,
+        gpu_type_code: 'h100-80gb',
+        region_code: 'ap-south-1',
+        action: 'DEPLOY_ATTEMPTED',
+        workload_category: 'LLM Fine-Tuning & Distributed Training',
+        created_at: new Date(Date.now() - 3600 * 4000).toISOString(),
+      },
+      {
+        id: 'mde_demo_2',
+        organization_id: this.defaultOrgId,
+        gpu_type_code: 'b200-192gb',
+        region_code: 'us-east-1',
+        action: 'VIEWED',
+        workload_category: 'Trillion-Parameter Reasoning Models',
+        created_at: new Date(Date.now() - 3600 * 2000).toISOString(),
+      },
+      {
+        id: 'mde_demo_3',
+        organization_id: this.defaultOrgId,
+        gpu_type_code: 'l40s-48gb',
+        region_code: 'ap-south-1',
+        action: 'CONFIGURED',
+        workload_category: 'Real-Time Vision & Diffusion Pipelines',
+        created_at: new Date(Date.now() - 3600 * 1000).toISOString(),
+      }
+    );
+
+    // Initial audit log
+    this.auditLogs.push({
+      id: 'audit_demo_1',
+      organization_id: this.defaultOrgId,
+      user_id: this.defaultUserId,
+      action: 'INSTANCE_CREATED',
+      resource_type: 'INSTANCE',
+      resource_id: 'inst_982104',
+      details: 'Provisioned NVIDIA H100 80GB (ap-south-1 Mumbai)',
+      created_at: new Date(Date.now() - 3600 * 2500).toISOString(),
     });
   }
 
@@ -197,4 +280,11 @@ class MarketplaceStore {
   }
 }
 
-export const marketplaceStore = new MarketplaceStore();
+const globalForStore = globalThis as unknown as {
+  marketplaceStore: MarketplaceStore | undefined;
+};
+
+export const marketplaceStore =
+  globalForStore.marketplaceStore ?? new MarketplaceStore();
+
+globalForStore.marketplaceStore = marketplaceStore;

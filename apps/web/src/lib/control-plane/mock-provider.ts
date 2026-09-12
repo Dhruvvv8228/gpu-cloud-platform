@@ -89,4 +89,11 @@ export class MockProvider implements ComputeProvider {
   }
 }
 
-export const mockProviderSingleton = new MockProvider();
+const globalForProvider = globalThis as unknown as {
+  mockProviderSingleton: MockProvider | undefined;
+};
+
+export const mockProviderSingleton =
+  globalForProvider.mockProviderSingleton ?? new MockProvider();
+
+globalForProvider.mockProviderSingleton = mockProviderSingleton;

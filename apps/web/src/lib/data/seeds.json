@@ -1,0 +1,186 @@
+{
+  "gpu_types": [
+    {
+      "id": "gpu-l4",
+      "code": "l4-24gb",
+      "name": "NVIDIA L4",
+      "architecture": "Ada Lovelace",
+      "vram_gb": 24,
+      "cuda_cores": 7680,
+      "tensor_cores": 240,
+      "fp64_tflops": 0.5,
+      "fp32_tflops": 30.3,
+      "fp16_tflops": 121.0,
+      "interconnect": "PCIe Gen4",
+      "description": "Cost-effective, highly efficient GPU optimized for video streaming, AI inference, and light graphics workloads."
+    },
+    {
+      "id": "gpu-l40s",
+      "code": "l40s-48gb",
+      "name": "NVIDIA L40S",
+      "architecture": "Ada Lovelace",
+      "vram_gb": 48,
+      "cuda_cores": 18176,
+      "tensor_cores": 568,
+      "fp64_tflops": 1.4,
+      "fp32_tflops": 91.6,
+      "fp16_tflops": 366.0,
+      "interconnect": "PCIe Gen4",
+      "description": "Universal data center GPU built for generative AI, fine-tuning, high-fidelity 3D graphics, and computer vision."
+    },
+    {
+      "id": "gpu-a100",
+      "code": "a100-80gb",
+      "name": "NVIDIA A100 80GB",
+      "architecture": "Ampere",
+      "vram_gb": 80,
+      "cuda_cores": 6912,
+      "tensor_cores": 432,
+      "fp64_tflops": 19.5,
+      "fp32_tflops": 19.5,
+      "fp16_tflops": 312.0,
+      "interconnect": "NVLink 600 GB/s",
+      "description": "Enterprise workhorse GPU designed for large-scale deep learning model training, HPC, and data analytics."
+    },
+    {
+      "id": "gpu-h100",
+      "code": "h100-80gb",
+      "name": "NVIDIA H100 80GB",
+      "architecture": "Hopper",
+      "vram_gb": 80,
+      "cuda_cores": 14592,
+      "tensor_cores": 456,
+      "fp64_tflops": 34.0,
+      "fp32_tflops": 67.0,
+      "fp16_tflops": 1000.0,
+      "interconnect": "NVLink 900 GB/s",
+      "description": "Industry benchmark GPU for LLM training and high-throughput real-time AI inference with Transformer Engine."
+    },
+    {
+      "id": "gpu-h200",
+      "code": "h200-141gb",
+      "name": "NVIDIA H200",
+      "architecture": "Hopper",
+      "vram_gb": 141,
+      "cuda_cores": 14592,
+      "tensor_cores": 456,
+      "fp64_tflops": 34.0,
+      "fp32_tflops": 67.0,
+      "fp16_tflops": 1000.0,
+      "interconnect": "NVLink 900 GB/s (HBM3e 4.8TB/s)",
+      "description": "Next-gen Hopper architecture with massive 141GB HBM3e VRAM to handle trillion-parameter LLMs."
+    },
+    {
+      "id": "gpu-b200",
+      "code": "b200-192gb",
+      "name": "NVIDIA B200",
+      "architecture": "Blackwell",
+      "vram_gb": 192,
+      "cuda_cores": 20480,
+      "tensor_cores": 640,
+      "fp64_tflops": 45.0,
+      "fp32_tflops": 90.0,
+      "fp16_tflops": 2250.0,
+      "interconnect": "NVLink 1.8 TB/s",
+      "description": "Ultra-performance Blackwell GPU delivering 30x faster inference for trillion-parameter AI models."
+    }
+  ],
+  "regions": [
+    {
+      "id": "region-us-east",
+      "code": "us-east-1",
+      "name": "N. Virginia, USA",
+      "country": "United States",
+      "datacenter": "Equinix VA1",
+      "status": "ONLINE"
+    },
+    {
+      "id": "region-us-west",
+      "code": "us-west-2",
+      "name": "Oregon, USA",
+      "country": "United States",
+      "datacenter": "Digital Realty OR1",
+      "status": "ONLINE"
+    },
+    {
+      "id": "region-eu-west",
+      "code": "eu-west-1",
+      "name": "Frankfurt, Germany",
+      "country": "Germany",
+      "datacenter": "Maincube FRA1",
+      "status": "ONLINE"
+    },
+    {
+      "id": "region-ap-south",
+      "code": "ap-south-1",
+      "name": "Mumbai, India",
+      "country": "India",
+      "datacenter": "Yotta NM1",
+      "status": "ONLINE"
+    }
+  ],
+  "providers": [
+    {
+      "id": "prov-mock",
+      "code": "mock-provider",
+      "name": "Platform Cloud Capacity (Mock Provider)",
+      "is_active": true
+    }
+  ],
+  "pricing": [
+    {
+      "gpu_code": "l4-24gb",
+      "provider_hourly_cost_inr": 35.00,
+      "customer_hourly_price_inr": 45.00,
+      "platform_margin_inr": 10.00,
+      "vcpu_count": 8,
+      "ram_gb": 32,
+      "storage_gb": 100
+    },
+    {
+      "gpu_code": "l40s-48gb",
+      "provider_hourly_cost_inr": 85.00,
+      "customer_hourly_price_inr": 110.00,
+      "platform_margin_inr": 25.00,
+      "vcpu_count": 16,
+      "ram_gb": 64,
+      "storage_gb": 200
+    },
+    {
+      "gpu_code": "a100-80gb",
+      "provider_hourly_cost_inr": 160.00,
+      "customer_hourly_price_inr": 200.00,
+      "platform_margin_inr": 40.00,
+      "vcpu_count": 24,
+      "ram_gb": 128,
+      "storage_gb": 500
+    },
+    {
+      "gpu_code": "h100-80gb",
+      "provider_hourly_cost_inr": 240.00,
+      "customer_hourly_price_inr": 300.00,
+      "platform_margin_inr": 60.00,
+      "vcpu_count": 32,
+      "ram_gb": 250,
+      "storage_gb": 1000
+    },
+    {
+      "gpu_code": "h200-141gb",
+      "provider_hourly_cost_inr": 340.00,
+      "customer_hourly_price_inr": 420.00,
+      "platform_margin_inr": 80.00,
+      "vcpu_count": 48,
+      "ram_gb": 384,
+      "storage_gb": 1500
+    },
+    {
+      "gpu_code": "b200-192gb",
+      "provider_hourly_cost_inr": 500.00,
+      "customer_hourly_price_inr": 650.00,
+      "platform_margin_inr": 150.00,
+      "vcpu_count": 64,
+      "ram_gb": 512,
+      "storage_gb": 2000
+    }
+  ]
+}
