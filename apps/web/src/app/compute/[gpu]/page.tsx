@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import { Cpu, ArrowRight, ShieldCheck, CheckCircle2, Zap, Server, Globe2 } from 'lucide-react';
-import seedData from '../../../../../../db/seeds/0001_initial_seeds.json';
+import seedData from '@/lib/data/seeds.json';
 import { notFound } from 'next/navigation';
 
 export default async function GPUDetailPage({

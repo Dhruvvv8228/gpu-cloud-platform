@@ -3,7 +3,7 @@
 import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Cpu, Globe2, Layers, Server, Key, ArrowRight, ArrowLeft, CheckCircle2, ShieldAlert } from 'lucide-react';
-import seedData from '../../../../../../../db/seeds/0001_initial_seeds.json';
+import seedData from '@/lib/data/seeds.json';
 
 function DeployWizardContent() {
   const router = useRouter();

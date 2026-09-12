@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Cpu, Zap, Shield, Layers, Code, ArrowRight, CheckCircle2, Server, Globe2, Activity } from 'lucide-react';
-import seedData from '../../../../db/seeds/0001_initial_seeds.json';
+import seedData from '@/lib/data/seeds.json';
 
 export default function LandingPage() {
   const gpus = seedData.gpu_types;
